@@ -24,11 +24,17 @@ axios(config).then(function (response) {
     results.forEach((e,i) => {
         if(i <= 9){
             list = document.createElement('li');
+            a = document.createElement('a');
             list.setAttribute('class','aside_container__episodes');
-            list.textContent += `Episode ${e.id}`;
+            list.setAttribute('data-url',e.url);
+            a.classList.add('enlace');
+            a.setAttribute('id','episodes')
+            a.textContent += `Episode ${e.id}`;
+            a.setAttribute('data-url',e.url);
+            list.appendChild(a);
             ul.appendChild(list);
         }
-        console.log(i);
+        // console.log(i);
     });
 }).catch(function (error){
     console.log(error);
@@ -42,7 +48,6 @@ load.textContent = 'Load Episodes';
 aside.appendChild(load);
 load.setAttribute('class','aside_container__btn');
 load.addEventListener('click' , moreEpisode);
-load.addEventListener('click', lessEpisode);
 console.log(load);
 
 function moreEpisode(){
@@ -51,8 +56,14 @@ function moreEpisode(){
         result.forEach((e,i) => {
             if(i>9){
                 list = document.createElement('li');
+                a = document.createElement('a');
                 list.setAttribute('class','aside_container__episodes');
-                list.textContent += `Episode ${e.id}`;
+                list.setAttribute('data-url',e.url);
+                a.classList.add('enlace');
+                a.setAttribute('id','episodes')
+                a.textContent += `Episode ${e.id}`;
+                a.setAttribute('data-url',e.url);
+                list.appendChild(a);
                 ul.appendChild(list);
             }
         });
@@ -63,6 +74,39 @@ function moreEpisode(){
     load.removeEventListener('click', moreEpisode);
     load.remove();
 }
-// 
+// Info buttons
+// console.log(li);
+
+ul.addEventListener('click', (e)=>{
+    main.innerHTML= '';
+    console.log(e.target.getAttribute('class'));
+    if(e.target.classList.contains('aside_container__episodes')||e.target.classList.contains('enlace')){
+        let url = e.target.getAttribute('data-url');
+
+        axios(url).then(function (response){
+            let arr = response.data;
+            console.log(arr);
+                const h2Info = document.createElement('h2');
+                const pInfo = document.createElement('p');
+
+                const episodeInfo = document.createElement('section');
+                const episodeCharacters = document.createElement('section');
+
+                h2Info.textContent = `${arr.name}`;
+                pInfo.textContent = `${arr.air_date} | ${arr.episode}`;
+
+                episodeInfo.appendChild(h2Info);
+                episodeInfo.appendChild(pInfo);
+                main.appendChild(episodeInfo);
+                console.log(episodeInfo);
+        }).catch(function (error){
+            console.log(error);
+        });
+
+    }
+})
 
 
+// ContentMain
+
+// Episode Info

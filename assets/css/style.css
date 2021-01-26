@@ -55,6 +55,16 @@ table {
     font-family: MortyFont;
     src: url(/assets/fonts/get-schwifty/get_schwifty.ttf);
 }
+@font-face{
+    font-family: Mishfits;
+    src: url(/assets/fonts/misfits/MISFITS_.TTF);
+}
+@font-face{
+    font-family: Shlop;
+    src: url(/assets/fonts/shlop/shlop\ rg.ttf);
+}
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
 
 /*Estils genèrics de qualsevol projecte*/
 *{box-sizing:border-box;}
@@ -81,7 +91,7 @@ table {
 [class*="col-"]{
     float:left;
 	width:100%;
-	border:1px solid red;
+	/* border:1px solid red; */
 	padding:15px;
 }
 
@@ -171,9 +181,11 @@ lo-res laptops ands desktops */
 
 #header_container{
     background-color: rgba(0, 0, 0, 0.3);
+    border-bottom: 2px solid #b8dc74;
 }
 .header_container__title{
-    font-family: MortyFont; color: #06b1c5;
+    font-family: MortyFont;
+    color: #06b1c5;
     font-size: 3.5em;
     font-weight: bold;
     /* color: #06b1c5; */
@@ -181,12 +193,13 @@ lo-res laptops ands desktops */
 }
 
 #aside_container{
-    border: 1px solid red;
+    /* border: 1px solid red; */
     min-height: 630px;
     max-height: 630px;
     overflow-x: none;
     overflow-y: scroll;
     background-color: rgba(0, 0, 0, 0.3);
+    /* border-right: 2px solid #b8dc74; */
 }
 #aside_container::-webkit-scrollbar{
         -webkit-appearance: none;
@@ -225,4 +238,49 @@ lo-res laptops ands desktops */
     background-color: rgba(0, 0, 0, 0.3);
     min-height: 630px;
     max-height: 630px;
+    /* background-image: url(/assets/img/hachaMorty.jpg); */
+    background-size: cover;
+}
+.main_container_episode__title{
+    margin-left: 0.5em;
+    font-family: Mishfits;
+    font-size: 3em;
+    color: #06b1c5;
+    text-shadow: -2px 0 #b8dc74, 0 2px #b8dc74, 2px 0 #b8dc74, 0 -2px #b8dc74;
+}
+.main_container_episode__info{
+    margin: 0.25em 0 0.5em 0.75em;
+    font-family: Shlop;
+    font-size: 2em;
+    color: #06b1c5;
+    text-shadow: -2px #b8dc74, 2px #b8dc74, 2px #b8dc74, -2px #b8dc74;
+}
+
+.main_container_character{
+    /* border: 1px solid red; */
+    margin: 0 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    min-height: 500px;
+    max-height: 500px;
+    font-family: 'Architects Daughter', cursive;
+    font-size: 16px;
+}
+.main_container_character__info{
+    margin: 5px 25px;
+    width: 185px;
+}
+.main_container_character::-webkit-scrollbar{
+    -webkit-appearance: none;
+}
+.main_container_character_info__img{
+    width: 188px;
+    /* margin: 0 5px; */
+}
+.main_container_character_info__status{
+    /* color: #00b0c4; */
 }

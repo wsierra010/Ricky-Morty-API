@@ -84,29 +84,75 @@ ul.addEventListener('click', (e)=>{
         let url = e.target.getAttribute('data-url');
 
         axios(url).then(function (response){
-            let arr = response.data;
-            console.log(arr);
+                let results = response.data;
+            // console.log(results.characters);
+                // Firts Content main
                 const h2Info = document.createElement('h2');
+                h2Info.classList.add('main_container_episode__title');
                 const pInfo = document.createElement('p');
+                pInfo.classList.add('main_container_episode__info');
 
+                // First section main
                 const episodeInfo = document.createElement('section');
-                const episodeCharacters = document.createElement('section');
+                episodeInfo.classList.add('main_container_episode');
 
-                h2Info.textContent = `${arr.name}`;
-                pInfo.textContent = `${arr.air_date} | ${arr.episode}`;
+                h2Info.textContent = `${results.name}`;
+                pInfo.textContent = `${results.air_date} | ${results.episode}`;
+
+                // Second section main
+                episodeCharacters = document.createElement('section');
+                episodeCharacters.classList.add('main_container_character');
+
+
+                console.log(results);
+
+                const promises = [];
+
+                results.characters.forEach(element => {
+                    promises.push(axios.get(element));
+                })
+                axios.all(promises).then(function (response) {
+                        console.log(response);
+                        response.forEach(e => {
+                            // console.log(results.characters);
+                            // Create figure
+                            const figureCharacters = document.createElement('figure');
+                            figureCharacters.classList.add('main_container_character__info');
+                            // Create info Characters
+                            var imgCharacter = document.createElement('img');
+                            imgCharacter.classList.add('main_container_character_info__img');
+                            imgCharacter.setAttribute('src',`${e.data.image}`);
+                            imgCharacter.setAttribute('alt','Character');
+                            var pName = document.createElement('p');
+                            pName.classList.add('main_container_character_info__name');
+                            pName.textContent = `${e.data.name}`;
+                            var pSpecie = document.createElement('p');
+                            pSpecie.classList.add('main_container_character_info__spice');
+                            pSpecie.textContent = `${e.data.species}`;
+                            var pStatus = document.createElement('p');
+                            pStatus.classList.add('main_container_character_info__status');
+                            pStatus.textContent = `${e.data.status}`;
+
+                            figureCharacters.appendChild(imgCharacter);
+                            figureCharacters.appendChild(pName);
+                            figureCharacters.appendChild(pSpecie);
+                            figureCharacters.appendChild(pStatus);
+                            episodeCharacters.appendChild(figureCharacters);
+
+                    });
+                    })
+                    // console.log(promises);
+
 
                 episodeInfo.appendChild(h2Info);
                 episodeInfo.appendChild(pInfo);
                 main.appendChild(episodeInfo);
+                main.appendChild(episodeCharacters);
                 console.log(episodeInfo);
+                console.log(episodeCharacters);
         }).catch(function (error){
             console.log(error);
         });
 
     }
 })
-
-
-// ContentMain
-
-// Episode Info

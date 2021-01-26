@@ -196,13 +196,6 @@ lo-res laptops ands desktops */
     /* border: 1px solid red; */
     min-height: 630px;
     max-height: 630px;
-    overflow-x: none;
-    overflow-y: scroll;
-    background-color: rgba(0, 0, 0, 0.3);
-    /* border-right: 2px solid #b8dc74; */
-}
-#aside_container::-webkit-scrollbar{
-        -webkit-appearance: none;
 }
 .aside_container__episodes{
     padding: 1em 0;

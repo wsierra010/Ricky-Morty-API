@@ -275,6 +275,9 @@ lo-res laptops ands desktops */
     width: 188px;
     cursor: pointer;
 }
+.main_container_character_info__img:hover{
+    width: 200px;
+}
 .main_container_character_info__status{
     /* color: #00b0c4; */
 }

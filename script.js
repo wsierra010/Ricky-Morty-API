@@ -142,7 +142,6 @@ ul.addEventListener('click', (e)=>{
                     imgCharacter.addEventListener('click', ()=>{
                         const modalFigure = document.createElement('figure');
                         modalFigure.classList.add('main_container__modal');
-                        
                         // img character
                         const modalImg = document.createElement('img');
                         modalImg.setAttribute('src',`${e.data.image}`);
